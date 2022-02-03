@@ -1,7 +1,7 @@
 using System.Text;
 using AroundFootballService.Configurations;
+using AroundFootballService.Configurations.Extensions;
 using AroundFootballService.Dependency;
-using AroundFootballService.Services.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.IdentityModel.Tokens;
@@ -19,6 +19,7 @@ builder.Logging.AddConsole();
 builder.Services
     .Configure<KestrelServerOptions>(configuration.GetSection("Kestrel"));
 
+//AUTH
 var jwtSettings = configuration.GetConfigurationObject<JWTSettings>();
 
 builder.Services

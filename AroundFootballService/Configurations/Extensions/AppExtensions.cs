@@ -1,4 +1,4 @@
-﻿namespace AroundFootballService.Services.Extensions
+﻿namespace AroundFootballService.Configurations.Extensions
 {
     public static class AppExtensions
     {
