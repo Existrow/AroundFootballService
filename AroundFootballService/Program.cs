@@ -1,9 +1,11 @@
 using System.Text;
 using AroundFootballService.Configurations;
 using AroundFootballService.Configurations.Extensions;
+using AroundFootballService.Data;
 using AroundFootballService.Dependency;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,12 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
 // Databases contexts
+builder.Services
+    .AddDbContext<DataContext>(options =>
+    {
+        options.UseNpgsql(configuration.GetConnectionString("FootBallDB"));
+        options.UseLazyLoadingProxies();
+    });
 
 // Kestrel configure
 builder.Services
@@ -61,8 +69,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

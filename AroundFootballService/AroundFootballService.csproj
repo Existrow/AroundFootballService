@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Enums\" />
+    <Folder Include="Api\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
